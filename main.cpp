@@ -5,12 +5,9 @@ class Counter{
     int count;
     public:
     Counter(int count){
+        this->count = count;
     }
     Counter(){
-        count = 1;
-    }
-    void set_start(int count){
-        this->count = count;
     }
     int add(){
         return count++;
@@ -25,23 +22,27 @@ class Counter{
 
 int main(){
     setlocale(LC_ALL, "Russian");
+    bool correct_input = 1;
     char choice;
     int start;
-    Counter ct;
+    do {
     cout << "Вы хотите указать начальное значение счётчика? Введите y / n: " << endl;
     cin >> choice;
     if(choice == 'n'){
-        ct.set_start(1);
+       start = 1;
+       correct_input = 0;
     }
     else if (choice == 'y'){
         cout << "Введите начальное значение счётчика: " <<endl;
         cin >> start;
-        ct.set_start(start);
+        correct_input = 0;
     }
     else {
         cout << "Неверный выбор" << endl;
-        return 0;
     }
+    } while(correct_input == 1);
+    Counter ct(start);
+
     while(true){
         cout << "\nВведите команду ('+', '-', '=' или 'x'): ";
         cin >> choice;
